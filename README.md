@@ -120,11 +120,20 @@ See `DESIGN.md` for detailed system design documentation.
 
 ## 🚀 Getting Started
 
+### 📱 Quick Start - Run on Your iPhone (5 Minutes)
+
+**Want to test on your iPhone right away?**
+
+See **[QUICK_START_IPHONE.md](QUICK_START_IPHONE.md)** for the fastest way to get the app running on your device!
+
+For comprehensive deployment guide, see **[IPHONE_DEPLOYMENT.md](IPHONE_DEPLOYMENT.md)**
+
 ### Prerequisites
 
 - **macOS** 13.0 or later
 - **Xcode** 15.0 or later
-- **iOS Simulator** or physical device running iOS 15.0+
+- **iOS Simulator** or **iPhone** running iOS 15.0+
+- **Apple ID** (free account works for personal device testing)
 
 ### Installation Steps
 
