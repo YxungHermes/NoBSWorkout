@@ -45,16 +45,32 @@ The app follows **MVVM (Model-View-ViewModel)** architecture with clear separati
 ```
 NoBSWorkout/
 ├── App/                    # App entry point
+│   └── NoBSWorkoutApp.swift
 ├── Models/                 # Core Data entities + extensions
+│   ├── NoBSWorkout.xcdatamodeld/
+│   ├── Extensions/
+│   └── CoreDataSchema.md
 ├── ViewModels/             # Business logic & state management
 ├── Views/                  # SwiftUI views
+│   ├── Home/
+│   ├── Workout/
+│   ├── History/
+│   ├── PRs/
+│   ├── Timer/
+│   └── Common/
 ├── Services/               # Reusable business logic
 │   ├── CoreData/           # Persistence layer
 │   ├── PRCalculatorService # PR detection & calculation
 │   └── TimerService        # Rest timer management
 ├── Utilities/              # Helpers, extensions, constants
-└── Resources/              # Assets
+│   ├── Constants.swift
+│   ├── Extensions/
+│   └── Helpers/
+├── Info.plist              # App configuration
+└── (Xcode will generate additional resource folders)
 ```
+
+> **Note:** This repository has been reorganized for better maintainability. All source files are now in the `NoBSWorkout/` directory following standard iOS conventions. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ### Data Model
 
@@ -126,25 +142,31 @@ See `DESIGN.md` for detailed system design documentation.
    - Interface: **SwiftUI**
    - Storage: **Core Data** ✅ (Important!)
    - Language: **Swift**
-   - Save in the repository root directory
+   - Save in a temporary location (you'll copy files in the next step)
 
-3. **Add the Core Data model**
-   - In Xcode, locate the `NoBSWorkout.xcdatamodeld` file
-   - Follow the instructions in `NoBSWorkout/NoBSWorkout/Models/CoreDataSchema.md`
-   - Create all 4 entities: ExerciseTemplate, WorkoutSession, SetEntry, PersonalRecord
-   - Add attributes and relationships as specified
+3. **Replace Core Data model with repository version**
+   - The repository includes a pre-configured Core Data model at `NoBSWorkout/Models/NoBSWorkout.xcdatamodeld/`
+   - In Xcode, delete the auto-generated `.xcdatamodeld` file
+   - Drag the `NoBSWorkout.xcdatamodeld` folder from `NoBSWorkout/Models/` into Xcode
+   - The model includes all 4 entities: ExerciseTemplate, WorkoutSession, SetEntry, PersonalRecord
+   - See `NoBSWorkout/Models/CoreDataSchema.md` for detailed schema documentation
 
-4. **Add all Swift files to the project**
-   - In Xcode's Project Navigator, delete the default files except:
-     - `Assets.xcassets`
-     - `NoBSWorkout.xcdatamodeld`
-   - Drag all folders from `NoBSWorkout/NoBSWorkout/` into Xcode
-   - Make sure "Copy items if needed" is checked
-   - Select "Create groups" (not folder references)
-   - Verify all files appear in the Project Navigator
+4. **Add all source files to the project**
+   - In Xcode's Project Navigator, delete the default Swift files (keep `Assets.xcassets`)
+   - Drag all folders from the repository's `NoBSWorkout/` directory into Xcode:
+     - `App/`
+     - `Models/`
+     - `ViewModels/`
+     - `Views/`
+     - `Services/`
+     - `Utilities/`
+   - Make sure **"Copy items if needed"** is **unchecked** (reference files in place)
+   - Select **"Create groups"** (not folder references)
+   - Verify all files appear in the Project Navigator with proper folder structure
 
 5. **Configure Info.plist**
-   Add notification permissions:
+   - Replace the auto-generated Info.plist with `NoBSWorkout/Info.plist` from the repository
+   - Or manually add notification permissions to your Info.plist:
    ```xml
    <key>NSUserNotificationsUsageDescription</key>
    <string>NoBSWorkout needs notification permission to alert you when rest timers complete.</string>
